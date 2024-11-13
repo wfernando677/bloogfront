@@ -5,7 +5,8 @@ import alex from '/src/assets/alex.jpeg';
 import willian from '/src/assets/willian.jpeg';
 import carolina from '/src/assets/carolina.jpeg';
 import ComputadorPage from './components/ComputadorPage';
-import HardwarePage from './components/HardwarePage'; // Importa el nuevo componente
+import HardwarePage from './components/HardwarePage';
+import MatematicaPage from './components/MatematicaPage'; // Importa el nuevo componente
 
 type BlogCardProps = {
   image: string;
@@ -42,13 +43,13 @@ function HomePage() {
       image: carolina,
       title: 'Hardware',
       description: 'Hardware de alto rendimiento y seguridad avanzada.',
-      onClick: () => navigate('/hardware') // Navega a la página de hardware
+      onClick: () => navigate('/hardware')
     },
     {
       image: willian,
-      title: 'Step by step guide for conducting usability',
-      description: 'Guía paso a paso para realizar pruebas de usabilidad.',
-      onClick: () => alert('Redirige a una página de Usabilidad')
+      title: 'La Matemática como Instrumento para el Desarrollo de la Lógica',
+      description: 'Descubre cómo la matemática fomenta el pensamiento lógico y la capacidad de resolver problemas.',
+      onClick: () => navigate('/matematica') // Navega a la página de Matemática
     }
   ];
 
@@ -77,7 +78,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/computador" element={<ComputadorPage />} />
-        <Route path="/hardware" element={<HardwarePage />} /> {/* Nueva ruta para HardwarePage */}
+        <Route path="/hardware" element={<HardwarePage />} />
+        <Route path="/matematica" element={<MatematicaPage />} /> {/* Nueva ruta para MatematicaPage */}
       </Routes>
     </Router>
   );

@@ -4,7 +4,7 @@ const HardwarePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 py-12 px-4 lg:px-8">
       <header className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-green-700">HARDWARE</h1>
+        <h1 className="text-5xl font-bold text-blue-700">HARDWARE</h1>
         <p className="text-xl text-gray-700 mt-4">
           Explora la estructura y los componentes físicos que permiten a las computadoras funcionar.
         </p>
