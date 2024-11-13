@@ -1,45 +1,54 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import alex from '/src/assets/alex.jpeg';
 import willian from '/src/assets/willian.jpeg';
 import carolina from '/src/assets/carolina.jpeg';
+import ComputadorPage from './components/ComputadorPage';
+import HardwarePage from './components/HardwarePage'; // Importa el nuevo componente
 
 type BlogCardProps = {
   image: string;
   title: string;
   description: string;
-  link: string;
+  onClick?: () => void;
 };
 
-const BlogCard: React.FC<BlogCardProps> = ({ image, title, description, link }) => (
-  <div className="bg-white rounded-lg shadow-md p-8 max-w-xs md:max-w-sm lg:max-w-md transition-transform transform hover:scale-105 hover:shadow-lg">
+const BlogCard: React.FC<BlogCardProps> = ({ image, title, description, onClick }) => (
+  <div
+    className="bg-white rounded-lg shadow-md p-8 max-w-xs md:max-w-sm lg:max-w-md transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer"
+    onClick={onClick}
+  >
     <img src={image} alt={title} className="rounded-lg mb-4 w-full h-48 object-cover" />
     <h3 className="text-2xl font-semibold text-blue-600 mb-2">{title}</h3>
     <p className="text-gray-600 mb-4 max-w-xs mx-auto">{description}</p>
-    <a href={link} className="text-green-500 font-semibold flex items-center hover:text-green-700 transition duration-200">
+    <span className="text-green-500 font-semibold flex items-center hover:text-green-700 transition duration-200">
       Read more <span className="ml-2">→</span>
-    </a>
+    </span>
   </div>
 );
 
-function App() {
+function HomePage() {
+  const navigate = useNavigate();
+
   const blogPosts = [
     {
       image: alex,
       title: 'Computador que calcula',
-      description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-      link: '#'
+      description: 'La computadora no solo calcula números, sino que transforma ideas en soluciones.',
+      onClick: () => navigate('/computador')
     },
     {
       image: carolina,
       title: 'Hardware',
-      description: 'Hardware potente y sistemas seguros.',
-      link: '#'
+      description: 'Hardware de alto rendimiento y seguridad avanzada.',
+      onClick: () => navigate('/hardware') // Navega a la página de hardware
     },
     {
       image: willian,
       title: 'Step by step guide for conducting usability',
-      description: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-      link: '#'
+      description: 'Guía paso a paso para realizar pruebas de usabilidad.',
+      onClick: () => alert('Redirige a una página de Usabilidad')
     }
   ];
 
@@ -54,11 +63,23 @@ function App() {
             image={post.image}
             title={post.title}
             description={post.description}
-            link={post.link}
+            onClick={post.onClick}
           />
         ))}
       </div>
     </section>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/computador" element={<ComputadorPage />} />
+        <Route path="/hardware" element={<HardwarePage />} /> {/* Nueva ruta para HardwarePage */}
+      </Routes>
+    </Router>
   );
 }
 
